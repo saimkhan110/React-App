@@ -12,7 +12,7 @@ function App() {
   return (
     <>
         <h1>React App</h1>
-        <p>Welcome Back!</p>
+        <p>Welcome Back !</p>
         <Home></Home>
         <About></About>
     </>
