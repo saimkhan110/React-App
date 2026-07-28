@@ -1,67 +1,103 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import Home from './Home'
-import About from './About'
+import "./App.css";
+import Home from "./Home";
+import About from "./About";
 
 function App() {
-  const studentName = "Ahmed";
-  const CourseName = "Full Stack Mern";
-  const TotalDays = 30;
-  const isEnroll = false;
+  const student = {
+    name: "Muhammad Saim Khan",
+    course: "Full Stack MERN",
+    duration: 30,
+    enrolled: true,
+    skills: ["HTML", "CSS", "JavaScript", "React"],
+  };
+
   const currentDate = new Date();
-  const course = ["html" , "css" , "js" , "react"];
 
-  const greeting = ()=>{
-      const hour = currentDate.getHours();
-      if (hour < 12) {
-          return "Good Morning";
-      } else if (hour < 18) {
-          return "Good Afternoon";
-      } else {
-          return "Good Night";
-      }
-  }
-  return (
-    <>
-        {/*<h1>React App</h1>
-        <p>Welcome Back !</p>
-        <Home></Home>
-        <About></About>*/}
+  const getGreeting = () => {
+    const hour = currentDate.getHours();
 
-        <h1 className='info-box'> {greeting()}</h1>
-        {/* StudentInfo */}
-        <h2>Student Information</h2>
-        <p> <strong> Name: </strong> {studentName} </p>
-        <p> <strong> Course: </strong> {CourseName} </p>
-        <p>
-          <strong> Status: </strong>
-          <span className='highlight'>
-            {isEnroll ? "Enrolled" : "Not Enrolled"}
-          </span>
-        </p>
-        <p>
-          <strong> Date: </strong>
-          {currentDate.toLocaleDateString()}
-        </p>
+    if (hour < 12) return "🌞 Good Morning";
+    if (hour < 18) return "☀️ Good Afternoon";
+    return "🌙 Good Evening";
+  };
 
-        <div>
-          <h2>Skills you'll learn</h2>
-          <ul>
-            {
-              course.map(( a , b ) =>
-                <li>
-                  { b +1}.
-                  {a}
-                </li>
-              )
-            }
-          </ul>
-        </div>
-    </>
-  )
+return (
+  <div className="container">
+
+    <div className="card">
+      <h1>{getGreeting()}</h1>
+      <p>Welcome to your React Dashboard 🚀</p>
+    </div>
+
+    <div className="card">
+      <h2>👨‍🎓 Student Information</h2>
+
+      <div className="info">
+        <strong>Name:</strong>
+        <span>{student.name}</span>
+      </div>
+
+      <div className="info">
+        <strong>Course:</strong>
+        <span>{student.course}</span>
+      </div>
+
+      <div className="info">
+        <strong>Duration:</strong>
+        <span>{student.duration} Days</span>
+      </div>
+
+      <div className="info">
+        <strong>Status:</strong>
+        <span
+          className={
+            student.enrolled ? "status active" : "status inactive"
+          }
+        >
+          {student.enrolled ? "Enrolled ✅" : "Not Enrolled ❌"}
+        </span>
+      </div>
+
+      <div className="info">
+        <strong>Date:</strong>
+        <span>{currentDate.toLocaleDateString()}</span>
+      </div>
+    </div>
+
+    <div className="card">
+      <h2>💻 Skills You'll Learn</h2>
+
+      <ul className="skill-list">
+        {student.skills.map((skill, index) => (
+          <li key={index}>
+            <span>{index + 1}</span>
+            {skill}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Inline Styling Example */}
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        padding: "20px",
+        borderRadius: "10px",
+        textAlign: "center",
+        marginTop: "20px",
+      }}
+    >
+      <h2>Direct Inline Styling</h2>
+      <p style={{ color: "yellow", fontSize: "18px" }}>
+        React Inline CSS Example
+      </p>
+    </div>
+
+  </div>
+  
+);
+
 }
 
-export default App
+export default App;
